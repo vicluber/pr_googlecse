@@ -1,0 +1,4 @@
+# cat=basic; type=string; label = Google API Key: Get your own on https://console.developers.google.com/apis/
+googleApiKey =
+# cat=basic; type=string; label = Google Custom Search Enginge Key: Get your own on https://cse.google.com/cse/
+googleCseKey =

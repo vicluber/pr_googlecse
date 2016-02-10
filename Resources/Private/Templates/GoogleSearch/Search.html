@@ -1,0 +1,31 @@
+<f:render partial="Searchform" arguments="{search: search}"/><br />
+
+<h2>Suchergebnisse für {search.query}</h2>
+<p>Es wurden {search.totalResults} Ergebnisse gefunden.</p><br/>
+
+<f:if condition="{items}">
+	<f:then>
+		<f:for each="{items}" as="item">
+			<div class="tx_prgooglesearch-panel">
+				<div class="tx_prgooglesearch-panel-head">
+					<a href="{item.link}">
+						<f:format.raw>{item.title}</f:format.raw>
+					</a>
+				</div>
+				<div class="tx_prgooglesearch-panel-body">
+					<f:format.raw>{item.snippet}</f:format.raw>
+				</div>
+			</div>
+		</f:for>
+
+		<p>Seite: {search.activePage} von {search.totalPages}</p>
+		<f:link.action action="search" arguments="{search: search.links.firstPage}">First Page</f:link.action>
+		<f:for each="{search.links.pagination}" as="link" iteration="iterator" key="key">
+			<f:link.action action="search" arguments="{search : link}">{key}</f:link.action>
+		</f:for>
+		<f:link.action action="search" arguments="{search: search.links.lastPage}"> Last Page</f:link.action>
+	</f:then>
+	<f:else>
+		Hab nix gefunden!!!
+	</f:else>
+</f:if>

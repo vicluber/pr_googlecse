@@ -1,0 +1,38 @@
+plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
+	.tx_prgooglesearch-panel {
+			margin: 10px;
+			background-color: #ffffff;
+			border: 1px solid #333333;
+			border-radius: 4px;
+			}
+
+		.tx_prgooglesearch-panel-head {
+			padding: 10px 15px;
+			font-size: 105%;
+			color: #333333;
+			background-color: #eeeeee;
+			border-bottom: 1px solid #333333;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.tx_prgooglesearch-panel-body {
+			font-size: 100%;
+			color: #333333;
+			padding: 15px;
+		}
+
+		.tx_prgooglesearch-panel a,
+		.tx_prgooglesearch-panel a:visited,
+		.tx_prgooglesearch-panel a:active {
+			color: #484747;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		.tx_prgooglesearch-panel a:hover,
+		.tx_prgooglesearch-panel a:focus {
+			color: #696868;
+			text-decoration: none;
+		}
+)
