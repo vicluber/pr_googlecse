@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-01-19T14:50:37Z"
+          product-name="pr_googlecse">
+        <header/>
+        <body>
+            <trans-unit id="tx_prgooglecse_domain_model_search">
+                <source>Results for</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
+                <source>Total results:</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.submit">
+                <source>Search</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.query">
+                <source>Query</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
+                <source>No results found!</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.firstpage">
+                <source>First page</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.lastpage">
+                <source>Last page</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
+                <source>No results found!</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.firstpage">
+                <source>First page</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.lastpage">
+                <source>Last page</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.page">
+                <source>Page</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.pageof">
+                <source>of</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -2,6 +2,7 @@
 namespace Kronovanet\PrGooglecse\Controller;
 
 use Kronovanet\PrGooglecse\Configuration\ExtConf;
+use Kronovanet\PrGooglecse\Domain\Model\Result;
 use Kronovanet\PrGooglecse\Domain\Model\Search;
 
 /***************************************************************
@@ -66,7 +67,6 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * initialize searchAction
      *
-     * @param Search $search
      * @return void
      */
     public function initializeSearchAction() {
@@ -84,51 +84,13 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @throws \Exception
      */
     protected function searchAction(Search $search) {
-        /* will be configurable later in wizard */
-        $maxPaginationItems = 10;
-        /* end */
-
         $content = $this->getResponseFromGoogleSearch($search);
         if ($content === null) throw new \Exception('Status code different from 200', 1454323157);
         $response = json_decode($content['body']);
         if ($response->queries->request[0]->totalResults !== '0') {
             $search->setTotalResults($response->queries->request[0]->totalResults);
-
-            $items = new \SplObjectStorage();
-            if (is_array($response->items)) {
-                foreach ($response->items as $responseItem) {
-                    /**
-                     * @var \Kronovanet\PrGooglecse\Domain\Model\Item $item
-                     */
-                    $item = $this->objectManager->get(\Kronovanet\PrGooglecse\Domain\Model\Item::class);
-                    $item->setLink($responseItem->link);
-                    $item->setSnippet($responseItem->htmlSnippet);
-                    $item->setTitle($responseItem->htmlTitle);
-
-                    $items->attach($item);
-                }
-
-                // create links for pagination
-                $totalResults = $search->getTotalResults();
-                $startIndex = $search->getStartIndex();
-                if ($totalResults > self::ITEMSPERQUERY) {
-                    $activePage = ($startIndex == 1 ? 1 : ceil($startIndex / self::ITEMSPERQUERY));
-                    $totalPages = ceil($totalResults / self::ITEMSPERQUERY);
-                    $startPage = ($activePage > ($maxPaginationItems - 5)) ? $activePage - 5 : 0;
-                    $search->setActivePage($activePage);
-                    $search->setTotalPages($totalPages);
-                    for ($i = $startPage; $i < $startPage + $maxPaginationItems && $i <= $totalPages; $i++) {
-                        $links['pagination'][$i + 1] = array(
-                            'startIndex' => 1 + ($i * self::ITEMSPERQUERY),
-                            'query' => $search->getQuery()
-                        );
-                    }
-                    $links['firstPage'] = array('startIndex' => 1, 'query' => $search->getQuery());
-                    $links['lastPage'] = array('startIndex' => $search->getTotalResults() - self::ITEMSPERQUERY, 'query' => $search->getQuery());
-                    $search->setLinks($links);
-                }
-            }
-            $this->view->assign('items', $items);
+            $search->setLinks($this->getSearchPagination($search));
+            $this->view->assign('results', $this->getResultObjectStorage($response));
         }
         $this->view->assign('search', $search);
 
@@ -157,27 +119,60 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     }
 
     /**
-     * returns the results as object storage of given response
+     * returns an array that includes the pagination array
+     *
+     * @param Search $search
+     * @return array|null
+     */
+    protected function getSearchPagination(Search $search) {
+        /* will be configurable later via TCA */
+        $maxPaginationItems = 10;
+        /* end */
+
+        $totalResults = $search->getTotalResults();
+        $startIndex = $search->getStartIndex();
+        $links = null;
+        if ($totalResults > self::ITEMSPERQUERY) {
+            $links = array();
+            $activePage = ($startIndex == 1 ? 1 : ceil($startIndex / self::ITEMSPERQUERY));
+            $totalPages = ceil($totalResults / self::ITEMSPERQUERY);
+            $startPage = ($activePage > ($maxPaginationItems - 5)) ? $activePage - 5 : 0;
+            for ($i = $startPage; $i < $startPage + $maxPaginationItems && $i <= $totalPages; $i++) {
+                $links['pagination'][$i + 1] = array(
+                    'startIndex' => 1 + ($i * self::ITEMSPERQUERY),
+                    'query' => $search->getQuery()
+                );
+            }
+            $links['firstPage'] = array('startIndex' => 1, 'query' => $search->getQuery());
+            $links['lastPage'] = array('startIndex' => $search->getTotalResults() - self::ITEMSPERQUERY, 'query' => $search->getQuery());
+            $links['activePage'] = $activePage;
+            $links['totalPages'] = $totalPages;
+        }
+        return $links;
+    }
+
+    /**
+     * includes results from $response to given search object
      *
      * @param \stdClass $response
      * @return \SplObjectStorage|null
      */
     protected function getResultObjectStorage(\stdClass $response) {
-        $items = null;
+        $results = null;
         if (is_array($response->items)) {
-            $items = new \SplObjectStorage();
+            $results = new \SplObjectStorage();
             foreach ($response->items as $responseItem) {
                 /**
-                 * @var \Kronovanet\PrGooglecse\Domain\Model\Item $item
+                 * @var Result $result
                  */
-                $item = $this->objectManager->get(\Kronovanet\PrGooglecse\Domain\Model\Item::class);
-                $item->setLink($responseItem->link);
-                $item->setSnippet($responseItem->htmlSnippet);
-                $item->setTitle($responseItem->htmlTitle);
+                $result = $this->objectManager->get(Result::class);
+                $result->setLink($responseItem->link);
+                $result->setSnippet($responseItem->htmlSnippet);
+                $result->setTitle($responseItem->htmlTitle);
 
-                $items->attach($item);
+                $results->attach($result);
             }
         }
-        return $items;
+        return $results;
     }
 }

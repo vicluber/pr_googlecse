@@ -1,31 +1,41 @@
-<f:render partial="Searchform" arguments="{search: search}"/><br />
+<f:render partial="Searchform" arguments="{search: search}"/><br/>
 
-<h2>Suchergebnisse für {search.query}</h2>
-<p>Es wurden {search.totalResults} Ergebnisse gefunden.</p><br/>
+<h2>
+	<f:translate key="tx_prgooglecse_domain_model_search"/>
+	{search.query}
+</h2>
+<p>
+	<f:translate key="tx_prgooglecse_domain_model_search.totalResults"/>
+	{search.totalResults}
+</p><br/>
 
-<f:if condition="{items}">
+<f:if condition="{results}">
 	<f:then>
-		<f:for each="{items}" as="item">
+		<f:for each="{results}" as="result">
 			<div class="tx_prgooglesearch-panel">
 				<div class="tx_prgooglesearch-panel-head">
-					<a href="{item.link}">
-						<f:format.raw>{item.title}</f:format.raw>
+					<a href="{result.link}">
+						<f:format.raw>{result.title}</f:format.raw>
 					</a>
 				</div>
 				<div class="tx_prgooglesearch-panel-body">
-					<f:format.raw>{item.snippet}</f:format.raw>
+					<f:format.raw>{result.snippet}</f:format.raw>
 				</div>
 			</div>
 		</f:for>
 
-		<p>Seite: {search.activePage} von {search.totalPages}</p>
-		<f:link.action action="search" arguments="{search: search.links.firstPage}">First Page</f:link.action>
+		<p><f:translate key="tx_prgooglecse_domain_model_search.page" /> {search.links.activePage} <f:translate key="tx_prgooglecse_domain_model_search.pageof" /> {search.links.totalPages}</p>
+		<f:link.action action="search" arguments="{search: search.links.firstPage}">
+			<f:translate key="tx_prgooglecse_domain_model_search.firstpage"/>
+		</f:link.action>
 		<f:for each="{search.links.pagination}" as="link" iteration="iterator" key="key">
 			<f:link.action action="search" arguments="{search : link}">{key}</f:link.action>
 		</f:for>
-		<f:link.action action="search" arguments="{search: search.links.lastPage}"> Last Page</f:link.action>
+		<f:link.action action="search" arguments="{search: search.links.lastPage}">
+			<f:translate key="tx_prgooglecse_domain_model_search.lastpage"/>
+		</f:link.action>
 	</f:then>
 	<f:else>
-		Hab nix gefunden!!!
+		<f:translate key="tx_prgooglecse_domain_model_search.noresults"/>
 	</f:else>
 </f:if>

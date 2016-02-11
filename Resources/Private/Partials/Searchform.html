@@ -1,5 +1,5 @@
 <f:form action="search" name="search" object="{search}" noCache="1" noCacheHash="1">
-	<p>Suchbegriff:</p>
+	<p><f:translate key="tx_prgooglecse_domain_model_search.query" />:</p>
 	<f:form.textfield property="query" />
-	<f:form.submit value="Search" />
+	<f:form.submit value="{f:translate(key:'tx_prgooglecse_domain_model_search.submit')}" />
 </f:form>
