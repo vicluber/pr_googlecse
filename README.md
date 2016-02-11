@@ -4,4 +4,4 @@ This is a TYPO3 Extension for using Google Custom Search Engine in combination w
 
 ### Features ###
 
-* Documentation cooming soon!
+* Documentation coming soon!
