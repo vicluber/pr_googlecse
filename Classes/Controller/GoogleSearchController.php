@@ -4,6 +4,7 @@ namespace Kronovanet\PrGooglecse\Controller;
 use Kronovanet\PrGooglecse\Configuration\ExtConf;
 use Kronovanet\PrGooglecse\Domain\Model\Result;
 use Kronovanet\PrGooglecse\Domain\Model\Search;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***************************************************************
  *
@@ -29,12 +30,13 @@ use Kronovanet\PrGooglecse\Domain\Model\Search;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
     /**
      * searchstring for Google Api
      */
-    const SEARCHSTRING = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&startIndex=%i';
+    const SEARCHSTRING = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&startIndex=%d';
     /**
      * max items per query
      */
@@ -51,7 +53,8 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @param ExtConf $extConf
      * @return void
      */
-    public function injectExtConf(ExtConf $extConf) {
+    public function injectExtConf(ExtConf $extConf)
+    {
         $this->extConf = $extConf;
     }
 
@@ -60,7 +63,8 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    protected function formAction() {
+    protected function formAction()
+    {
         $this->view->assign('search', $this->objectManager->get(\Kronovanet\PrGooglecse\Domain\Model\Search::class));
     }
 
@@ -69,7 +73,8 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function initializeSearchAction() {
+    public function initializeSearchAction()
+    {
         if ($this->arguments->hasArgument('search')) {
             $propertyMappingConfiguration = $this->arguments->getArgument('search')->getPropertyMappingConfiguration();
             $propertyMappingConfiguration->allowProperties('query', 'startIndex');
@@ -83,9 +88,12 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @return void
      * @throws \Exception
      */
-    protected function searchAction(Search $search) {
+    protected function searchAction(Search $search)
+    {
         $content = $this->getResponseFromGoogleSearch($search);
-        if ($content === null) throw new \Exception('Status code different from 200', 1454323157);
+        if ($content === null) {
+            throw new \Exception('Status code different from 200', 1454323157);
+        }
         $response = json_decode($content['body']);
         if ($response->queries->request[0]->totalResults !== '0') {
             $search->setTotalResults($response->queries->request[0]->totalResults);
@@ -101,9 +109,11 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @return array|null
      * @throws \Exception
      */
-    protected function getResponseFromGoogleSearch(Search $search) {
+    protected function getResponseFromGoogleSearch(Search $search)
+    {
         $response = array();
-        $findAddressLink = sprintf(self::SEARCHSTRING, $search->getQuery(), $this->extConf->getGoogleCseKey(), $this->extConf->getGoogleApiKey(), $search->getStartIndex());
+        $findAddressLink = sprintf(self::SEARCHSTRING, $search->getQuery(), $this->extConf->getGoogleCseKey(),
+            $this->extConf->getGoogleApiKey(), (int)$search->getStartIndex());
         try {
             $content = file_get_contents($findAddressLink);
         } catch (\Exception $e) {
@@ -124,8 +134,9 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @param Search $search
      * @return array|null
      */
-    protected function getSearchPagination(Search $search) {
-        /* will be configurable later via TCA */
+    protected function getSearchPagination(Search $search)
+    {
+        /* todo: will be configurable later via TCA */
         $maxPaginationItems = 10;
         /* end */
 
@@ -144,7 +155,10 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
                 );
             }
             $links['firstPage'] = array('startIndex' => 1, 'query' => $search->getQuery());
-            $links['lastPage'] = array('startIndex' => $search->getTotalResults() - self::ITEMSPERQUERY, 'query' => $search->getQuery());
+            $links['lastPage'] = array(
+                'startIndex' => $search->getTotalResults() - self::ITEMSPERQUERY,
+                'query' => $search->getQuery()
+            );
             $links['activePage'] = $activePage;
             $links['totalPages'] = $totalPages;
         }
@@ -157,7 +171,8 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @param \stdClass $response
      * @return \SplObjectStorage|null
      */
-    protected function getResultObjectStorage(\stdClass $response) {
+    protected function getResultObjectStorage(\stdClass $response)
+    {
         $results = null;
         if (is_array($response->items)) {
             $results = new \SplObjectStorage();

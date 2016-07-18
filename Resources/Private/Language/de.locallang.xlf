@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2016-01-19T14:50:37Z"
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-07-18T16:33:37Z"
           product-name="pr_googlecse">
         <header/>
         <body>
             <trans-unit id="tx_prgooglecse_domain_model_search">
                 <source>Results for</source>
+                <target>Ergebnisse für</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
                 <source>Total results:</source>
+                <target>Ergebnisse:</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.submit">
                 <source>Search</source>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.query">
                 <source>Query</source>
+                <target>Suche nach...</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
                 <source>No results found!</source>
+                <target>Keine Ergebnisse!</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.firstpage">
                 <source>First page</source>
+                <target>Erste Seite</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.lastpage">
                 <source>Last page</source>
+                <target>Letzte Seite</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.page">
                 <source>Page</source>
+                <target>Seite</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.pageof">
                 <source>of</source>
+                <target>von</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.openResult">
                 <source>Open</source>
+                <target>Öffnen</target>
             </trans-unit>
         </body>
     </file>

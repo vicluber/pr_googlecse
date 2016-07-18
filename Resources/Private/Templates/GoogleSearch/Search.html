@@ -21,10 +21,22 @@
 				<div class="tx_prgooglesearch-panel-body">
 					<f:format.raw>{result.snippet}</f:format.raw>
 				</div>
+				<div class="tx_prgooglesearch-panel-foot">
+					<a href="{result.link}"
+					   title="{f:translate(key:'LLL:EXT:pr_googlecse/Resources/Private/Language/locallang.xml:tx_prgooglecse_domain_model_search.openResult')}"
+					   class="field button">
+						<f:translate key="tx_prgooglecse_domain_model_search.openResult"/>
+					</a>
+				</div>
 			</div>
 		</f:for>
 
-		<p><f:translate key="tx_prgooglecse_domain_model_search.page" /> {search.links.activePage} <f:translate key="tx_prgooglecse_domain_model_search.pageof" /> {search.links.totalPages}</p>
+		<p>
+			<f:translate key="tx_prgooglecse_domain_model_search.page"/>
+			{search.links.activePage}
+			<f:translate key="tx_prgooglecse_domain_model_search.pageof"/>
+			{search.links.totalPages}
+		</p>
 		<f:link.action action="search" arguments="{search: search.links.firstPage}">
 			<f:translate key="tx_prgooglecse_domain_model_search.firstpage"/>
 		</f:link.action>

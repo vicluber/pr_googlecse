@@ -22,6 +22,14 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 			padding: 15px;
 		}
 
+		.tx_prgooglesearch-panel-foot {
+			background-color: #e3e3e3;
+			padding: 0 15px;
+			border-top: 1px solid #ccc;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
 		.tx_prgooglesearch-panel a,
 		.tx_prgooglesearch-panel a:visited,
 		.tx_prgooglesearch-panel a:active {
@@ -34,5 +42,31 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 		.tx_prgooglesearch-panel a:focus {
 			color: #696868;
 			text-decoration: none;
+		}
+
+		.tx_prgooglesearch-panel a.button {
+    		-webkit-transition: all 200ms ease-in-out;
+    		-moz-transition: all 200ms ease-in-out;
+			-o-transition: all 200ms ease-in-out;
+    		transition: all 200ms ease-in-out;
+			-webkit-appearance: none;
+    		-moz-appearance: none;
+    		appearance: none;
+			border: 1px solid rgb(90, 91, 91);
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			margin: .4em 0;
+			padding: 3px 8px;
+			font-size: 80%;
+			background: #828282;
+			color: #EEEEEE;
+			display: inline-block;
+        }
+
+   		.tx_prgooglesearch-panel a.button:hover,
+   		.tx_prgooglesearch-panel a.button:focus {
+			border: 1px solid #333333;
+    		background: rgb(19, 40, 42);
 		}
 )
