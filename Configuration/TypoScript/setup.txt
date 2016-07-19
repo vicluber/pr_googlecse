@@ -1,24 +1,24 @@
 plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 	.tx_prgooglesearch-panel {
-			margin: 10px;
-			background-color: #ffffff;
-			border: 1px solid #333333;
+			margin: 10px 0;
+			background-color: #fff;
+			border: 1px solid #333;
 			border-radius: 4px;
 			}
 
 		.tx_prgooglesearch-panel-head {
 			padding: 10px 15px;
 			font-size: 105%;
-			color: #333333;
-			background-color: #eeeeee;
-			border-bottom: 1px solid #333333;
+			color: #333;
+			background-color: #eee;
+			border-bottom: 1px solid #333;
 			border-top-left-radius: 3px;
 			border-top-right-radius: 3px;
 		}
 
 		.tx_prgooglesearch-panel-body {
 			font-size: 100%;
-			color: #333333;
+			color: #333;
 			padding: 15px;
 		}
 
@@ -45,10 +45,6 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 		}
 
 		.tx_prgooglesearch-panel a.button {
-    		-webkit-transition: all 200ms ease-in-out;
-    		-moz-transition: all 200ms ease-in-out;
-			-o-transition: all 200ms ease-in-out;
-    		transition: all 200ms ease-in-out;
 			-webkit-appearance: none;
     		-moz-appearance: none;
     		appearance: none;
@@ -60,7 +56,7 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 			padding: 3px 8px;
 			font-size: 80%;
 			background: #828282;
-			color: #EEEEEE;
+			color: #eee;
 			display: inline-block;
         }
 
@@ -69,4 +65,52 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 			border: 1px solid #333333;
     		background: rgb(19, 40, 42);
 		}
+
+		.tx_prgooglesearch-pagination {
+			display: inline-table;
+			padding: 0;
+			margin: 10px 0;
+		}
+
+		.tx_prgooglesearch-pagination li {
+			display: inline-block;
+		}
+
+		.tx_prgooglesearch-pagination li a {
+			padding: 6px 12px;
+			border:1px solid #333;
+			border-right-width: 0;
+		}
+
+		.tx_prgooglesearch-pagination li a:hover,
+		.tx_prgooglesearch-pagination li a:focus {
+			background: rgb(19, 40, 42);
+			color: #fff;
+		}
+
+		.tx_prgooglesearch-pagination li .active {
+			background: #828282;
+			color: #fff;
+		}
+
+		.tx_prgooglesearch-pagination li:first-of-type a {
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
+		}
+
+		.tx_prgooglesearch-pagination li:last-of-type a {
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+			border-right-width: 1px;
+		}
+
+		/* transitions */
+		.tx_prgooglesearch-panel a.button,
+		.tx_prgooglesearch-pagination li a {
+			-webkit-transition: all 200ms ease-in-out; /* Firefox */
+    		-moz-transition: all 200ms ease-in-out; /* WebKit */
+			-o-transition: all 200ms ease-in-out; /* Opera */
+    		transition: all 200ms ease-in-out; /* Standard */
+		}
+
 )

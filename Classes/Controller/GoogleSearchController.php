@@ -65,7 +65,6 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     protected function formAction()
     {
-        $this->view->assign('search', $this->objectManager->get(\Kronovanet\PrGooglecse\Domain\Model\Search::class));
     }
 
     /**
@@ -75,21 +74,23 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function initializeSearchAction()
     {
-        if ($this->arguments->hasArgument('search')) {
-            $propertyMappingConfiguration = $this->arguments->getArgument('search')->getPropertyMappingConfiguration();
-            $propertyMappingConfiguration->allowProperties('query', 'startIndex');
-        }
+
     }
 
     /**
      * show search results
      *
-     * @param Search $search
+     * @param string $query
+     * @param int $startIndex
      * @return void
      * @throws \Exception
      */
-    protected function searchAction(Search $search)
+    protected function searchAction($query = '', $startIndex = 1)
     {
+        /** @var Search $search */
+        $search = $this->objectManager->get(\Kronovanet\PrGooglecse\Domain\Model\Search::class);
+        $search->setQuery($query);
+        $search->setStartIndex($startIndex);
         $content = $this->getResponseFromGoogleSearch($search);
         if ($content === null) {
             throw new \Exception('Status code different from 200', 1454323157);
@@ -150,15 +151,15 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $startPage = ($activePage > ($maxPaginationItems - 5)) ? $activePage - 5 : 0;
             for ($i = $startPage; $i < $startPage + $maxPaginationItems && $i <= $totalPages; $i++) {
                 $links['pagination'][$i + 1] = array(
-                    'startIndex' => 1 + ($i * self::ITEMSPERQUERY),
-                    'query' => $search->getQuery()
+                    'startIndex' => 1 + ($i * self::ITEMSPERQUERY)
                 );
             }
-            $links['firstPage'] = array('startIndex' => 1, 'query' => $search->getQuery());
-            $links['lastPage'] = array(
-                'startIndex' => $search->getTotalResults() - self::ITEMSPERQUERY,
-                'query' => $search->getQuery()
-            );
+            if ($activePage > 1) {
+                $links['back'] = array('startIndex' => $links['pagination'][$activePage - 1]['startIndex']);
+            }
+            if ($activePage < $totalPages) {
+                $links['forward'] = array('startIndex' => $links['pagination'][$activePage + 1]['startIndex']);
+            }
             $links['activePage'] = $activePage;
             $links['totalPages'] = $totalPages;
         }

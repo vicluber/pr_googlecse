@@ -8,22 +8,22 @@
                 <source>Results for</source>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
-                <source>Total results:</source>
+                <source>About %s results.</source>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.submit">
                 <source>Search</source>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.query">
-                <source>Query</source>
+                <source>Search for...</source>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
                 <source>No results found!</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.firstpage">
-                <source>First page</source>
+            <trans-unit id="tx_prgooglecse_domain_model_search.back">
+                <source>Back</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.lastpage">
-                <source>Last page</source>
+            <trans-unit id="tx_prgooglecse_domain_model_search.forward">
+                <source>Next</source>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.page">
                 <source>Page</source>
@@ -33,6 +33,9 @@
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.openResult">
                 <source>Open</source>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.openResultInNewTab">
+                <source>Open new tab</source>
             </trans-unit>
         </body>
     </file>

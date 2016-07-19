@@ -9,28 +9,28 @@
                 <target>Ergebnisse für</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
-                <source>Total results:</source>
-                <target>Ergebnisse:</target>
+                <source>About %s results.</source>
+                <target>Ungefähr %s Ergebnisse.</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.submit">
                 <source>Search</source>
                 <target>Suchen</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.query">
-                <source>Query</source>
+                <source>Search for...</source>
                 <target>Suche nach...</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
                 <source>No results found!</source>
                 <target>Keine Ergebnisse!</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.firstpage">
-                <source>First page</source>
-                <target>Erste Seite</target>
+            <trans-unit id="tx_prgooglecse_domain_model_search.back">
+                <source>Back</source>
+                <target>Zurück</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.lastpage">
-                <source>Last page</source>
-                <target>Letzte Seite</target>
+            <trans-unit id="tx_prgooglecse_domain_model_search.forward">
+                <source>Next</source>
+                <target>Weiter</target>
             </trans-unit>
             <trans-unit id="tx_prgooglecse_domain_model_search.page">
                 <source>Page</source>
@@ -43,6 +43,10 @@
             <trans-unit id="tx_prgooglecse_domain_model_search.openResult">
                 <source>Open</source>
                 <target>Öffnen</target>
+            </trans-unit>
+            <trans-unit id="tx_prgooglecse_domain_model_search.openResultInNewTab">
+                <source>Open new tab</source>
+                <target>Öffne neuen Tab</target>
             </trans-unit>
         </body>
     </file>

@@ -1,13 +1,11 @@
-<f:render partial="Searchform" arguments="{search: search}"/><br/>
-
+<f:render partial="Searchform" arguments="{query: search.query}"/><br/>
 <h2>
 	<f:translate key="tx_prgooglecse_domain_model_search"/>
 	{search.query}
 </h2>
 <p>
-	<f:translate key="tx_prgooglecse_domain_model_search.totalResults"/>
-	{search.totalResults}
-</p><br/>
+	<f:translate key="tx_prgooglecse_domain_model_search.totalResults" arguments="{0: search.totalResults}"/>
+</p>
 
 <f:if condition="{results}">
 	<f:then>
@@ -27,6 +25,12 @@
 					   class="field button">
 						<f:translate key="tx_prgooglecse_domain_model_search.openResult"/>
 					</a>
+					<a href="{result.link}"
+					   title="{f:translate(key:'LLL:EXT:pr_googlecse/Resources/Private/Language/locallang.xml:tx_prgooglecse_domain_model_search.openResultInNewTab')}"
+					   class="field button"
+						target="_blank">
+						<f:translate key="tx_prgooglecse_domain_model_search.openResultInNewTab"/>
+					</a>
 				</div>
 			</div>
 		</f:for>
@@ -37,15 +41,43 @@
 			<f:translate key="tx_prgooglecse_domain_model_search.pageof"/>
 			{search.links.totalPages}
 		</p>
-		<f:link.action action="search" arguments="{search: search.links.firstPage}">
-			<f:translate key="tx_prgooglecse_domain_model_search.firstpage"/>
-		</f:link.action>
-		<f:for each="{search.links.pagination}" as="link" iteration="iterator" key="key">
-			<f:link.action action="search" arguments="{search : link}">{key}</f:link.action>
-		</f:for>
-		<f:link.action action="search" arguments="{search: search.links.lastPage}">
-			<f:translate key="tx_prgooglecse_domain_model_search.lastpage"/>
-		</f:link.action>
+		<div class="tx_prgooglesearch-pagination">
+			<f:if condition="{search.links.back}">
+				<li>
+					<f:link.action action="search"
+								   arguments="{startIndex: search.links.back.startIndex, query: search.query}">
+						<f:translate key="tx_prgooglecse_domain_model_search.back"/>
+					</f:link.action>
+				</li>
+			</f:if>
+			<f:for each="{search.links.pagination}" as="link" iteration="iterator" key="key">
+				<li>
+					<f:if condition="{key} == {search.links.activePage}">
+						<f:then>
+							<f:link.action action="search"
+										   class="active"
+										   arguments="{startIndex : link.startIndex, query : search.query}">
+								{key}
+							</f:link.action>
+						</f:then>
+						<f:else>
+							<f:link.action action="search"
+										   arguments="{startIndex : link.startIndex, query : search.query}">
+								{key}
+							</f:link.action>
+						</f:else>
+					</f:if>
+				</li>
+			</f:for>
+			<f:if condition="{search.links.forward}">
+				<li>
+					<f:link.action action="search"
+								   arguments="{startIndex: search.links.forward.startIndex, query: search.query}">
+						<f:translate key="tx_prgooglecse_domain_model_search.forward"/>
+					</f:link.action>
+				</li>
+			</f:if>
+		</div>
 	</f:then>
 	<f:else>
 		<f:translate key="tx_prgooglecse_domain_model_search.noresults"/>

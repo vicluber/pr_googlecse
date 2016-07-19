@@ -1,5 +1,9 @@
-<f:form action="search" name="search" object="{search}" noCache="1" noCacheHash="1">
-	<p><f:translate key="tx_prgooglecse_domain_model_search.query" />:</p>
-	<f:form.textfield property="query" />
-	<f:form.submit value="{f:translate(key:'tx_prgooglecse_domain_model_search.submit')}" />
+<f:form noCache="1" noCacheHash="1" method="get">
+	<p>
+		<f:translate key="tx_prgooglecse_domain_model_search.query"/>
+	</p>
+	<f:form.hidden name="controller" value="GoogleSearch"/>
+	<f:form.hidden name="action" value="search"/>
+	<f:form.textfield name="query" value="{query}"/>
+	<f:form.submit value="{f:translate(key:'tx_prgooglecse_domain_model_search.submit')}"/>
 </f:form>
