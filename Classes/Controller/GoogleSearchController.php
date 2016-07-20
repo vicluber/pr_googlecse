@@ -36,7 +36,7 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * searchstring for Google Api
      */
-    const SEARCHSTRING = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&startIndex=%d';
+    const SEARCHSTRING = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&start=%d';
     /**
      * max items per query
      */
@@ -113,7 +113,7 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     protected function getResponseFromGoogleSearch(Search $search)
     {
         $response = array();
-        $findAddressLink = sprintf(self::SEARCHSTRING, $search->getQuery(), $this->extConf->getGoogleCseKey(),
+        $findAddressLink = sprintf(self::SEARCHSTRING, urlencode($search->getQuery()), $this->extConf->getGoogleCseKey(),
             $this->extConf->getGoogleApiKey(), (int)$search->getStartIndex());
         try {
             $content = file_get_contents($findAddressLink);
@@ -149,7 +149,7 @@ class GoogleSearchController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $activePage = ($startIndex == 1 ? 1 : ceil($startIndex / self::ITEMSPERQUERY));
             $totalPages = ceil($totalResults / self::ITEMSPERQUERY);
             $startPage = ($activePage > ($maxPaginationItems - 5)) ? $activePage - 5 : 0;
-            for ($i = $startPage; $i < $startPage + $maxPaginationItems && $i <= $totalPages; $i++) {
+            for ($i = $startPage; $i < $startPage + $maxPaginationItems && $i < $totalPages; $i++) {
                 $links['pagination'][$i + 1] = array(
                     'startIndex' => 1 + ($i * self::ITEMSPERQUERY)
                 );

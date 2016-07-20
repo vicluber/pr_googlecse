@@ -71,7 +71,7 @@ class Search {
         // security
         $query = htmlspecialchars(strip_tags($query));
         // save encoded string
-        $this->query = urlencode($query);
+        $this->query = $query;
     }
 
     /**
