@@ -8,12 +8,12 @@ $EM_CONF[$_EXTKEY] = array(
         'createDirs' => '',
         'clearCacheOnLoad' => 0,
         'author' => 'Pascal Rinker',
-        'author_email' => 'prinker@jweiland.net',
-        'author_company' => 'jweiland.net',
+        'author_email' => 'info@crynton.com',
+        'author_company' => 'crynton.com',
         'version' => '0.0.4',
         'constraints' => array(
                 'depends' => array(
-                        'typo3' => '7.6.0-7.6.99',
+                        'typo3' => '7.6.0-8.7.99',
                 ),
                 'conflicts' => array(),
                 'suggests' => array(),
