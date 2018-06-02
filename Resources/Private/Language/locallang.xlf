@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2016-01-19T14:50:37Z"
-          product-name="pr_googlecse">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-01-19T14:50:37Z" product-name="pr_googlecse">
         <header/>
         <body>
-            <trans-unit id="tx_prgooglecse_domain_model_search">
+            <trans-unit id="tx_prgooglecse_search">
                 <source>Results for</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
+            <trans-unit id="tx_prgooglecse_search.totalResults">
                 <source>About %s results.</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.submit">
+            <trans-unit id="tx_prgooglecse_search.submit">
                 <source>Search</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.query">
+            <trans-unit id="tx_prgooglecse_search.query">
                 <source>Search for...</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
+            <trans-unit id="tx_prgooglecse_search.noresults">
                 <source>No results found!</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.back">
+            <trans-unit id="tx_prgooglecse_search.back">
                 <source>Back</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.forward">
+            <trans-unit id="tx_prgooglecse_search.forward">
                 <source>Next</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.page">
-                <source>Page</source>
+            <trans-unit id="tx_prgooglecse_copyright">
+                <source>Powered by Google custom search engine and TYPO3 extension pr_googlecse.</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.pageof">
-                <source>of</source>
+            <trans-unit id="tx_prgooglecse_error">
+                <source>The search is currently not available. Sorry for that!</source>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.openResult">
-                <source>Open</source>
-            </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.openResultInNewTab">
-                <source>Open new tab</source>
+            <trans-unit id="tx_prgooglecse_error-admin">
+                <source>Visible for admins only: Take a look into the sysLog to get the exception content!</source>
             </trans-unit>
         </body>
     </file>

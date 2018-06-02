@@ -1,37 +1,16 @@
-<div class="tx_prgooglesearch-pagination">
-	<f:if condition="{search.links.back}">
+<div class="tx_prgooglecse-pagination">
+	<f:if condition="{queries.previousPage.0}">
 		<li>
-			<f:link.action action="search"
-						   arguments="{startIndex: search.links.back.startIndex, query: search.query}">
-				<f:translate key="tx_prgooglecse_domain_model_search.back"/>
-			</f:link.action>
+			<f:link.page additionalParams="{prGoogleCseQuery: prGoogleCseQuery, prGoogleCseStartIndex: queries.previousPage.0.startIndex}" noCacheHash="1">
+				<f:translate key="tx_prgooglecse_search.back"/>
+			</f:link.page>
 		</li>
 	</f:if>
-	<f:for each="{search.links.pagination}" as="link" iteration="iterator" key="key">
+	<f:if condition="{queries.nextPage.0}">
 		<li>
-			<f:if condition="{key} == {search.links.activePage}">
-				<f:then>
-					<f:link.action action="search"
-								   class="active"
-								   arguments="{startIndex : link.startIndex, query : search.query}">
-						{key}
-					</f:link.action>
-				</f:then>
-				<f:else>
-					<f:link.action action="search"
-								   arguments="{startIndex : link.startIndex, query : search.query}">
-						{key}
-					</f:link.action>
-				</f:else>
-			</f:if>
-		</li>
-	</f:for>
-	<f:if condition="{search.links.forward}">
-		<li>
-			<f:link.action action="search"
-						   arguments="{startIndex: search.links.forward.startIndex, query: search.query}">
-				<f:translate key="tx_prgooglecse_domain_model_search.forward"/>
-			</f:link.action>
+			<f:link.page additionalParams="{prGoogleCseQuery: prGoogleCseQuery, prGoogleCseStartIndex: queries.nextPage.0.startIndex}" noCacheHash="1">
+				<f:translate key="tx_prgooglecse_search.forward"/>
+			</f:link.page>
 		</li>
 	</f:if>
 </div>

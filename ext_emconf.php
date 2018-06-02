@@ -1,21 +1,21 @@
 <?php
-$EM_CONF[$_EXTKEY] = array(
-        'title' => 'Google Custom Search Engine',
-        'description' => 'Google Custom Search Engine for the TYPO3 Frontend.',
+$EM_CONF[$_EXTKEY] = [
+        'title' => 'Google custom search engine',
+        'description' => 'Frontend search plugin that uses the Google CSE api.',
         'category' => 'plugin',
-        'state' => 'alpha',
+        'state' => 'stable',
         'uploadfolder' => 0,
         'createDirs' => '',
         'clearCacheOnLoad' => 0,
         'author' => 'Pascal Rinker',
         'author_email' => 'info@crynton.com',
         'author_company' => 'crynton.com',
-        'version' => '0.0.4',
-        'constraints' => array(
-                'depends' => array(
-                        'typo3' => '7.6.0-8.7.99',
-                ),
-                'conflicts' => array(),
-                'suggests' => array(),
-        ),
-);
+        'version' => '1.0.0',
+        'constraints' => [
+                'depends' => [
+                        'typo3' => '8.7.0-9.3.99',
+                ],
+                'conflicts' => [],
+                'suggests' => [],
+        ]
+];

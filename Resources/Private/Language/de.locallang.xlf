@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-07-18T16:33:37Z"
-          product-name="pr_googlecse">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-07-18T16:33:37Z" product-name="pr_googlecse">
         <header/>
         <body>
-            <trans-unit id="tx_prgooglecse_domain_model_search">
+            <trans-unit id="tx_prgooglecse_search">
                 <source>Results for</source>
                 <target>Ergebnisse für</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.totalResults">
+            <trans-unit id="tx_prgooglecse_search.totalResults">
                 <source>About %s results.</source>
                 <target>Ungefähr %s Ergebnisse.</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.submit">
+            <trans-unit id="tx_prgooglecse_search.submit">
                 <source>Search</source>
                 <target>Suchen</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.query">
+            <trans-unit id="tx_prgooglecse_search.query">
                 <source>Search for...</source>
                 <target>Suche nach...</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.noresults">
+            <trans-unit id="tx_prgooglecse_search.noresults">
                 <source>No results found!</source>
                 <target>Keine Ergebnisse!</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.back">
+            <trans-unit id="tx_prgooglecse_search.back">
                 <source>Back</source>
                 <target>Zurück</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.forward">
+            <trans-unit id="tx_prgooglecse_search.forward">
                 <source>Next</source>
                 <target>Weiter</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.page">
-                <source>Page</source>
-                <target>Seite</target>
+            <trans-unit id="tx_prgooglecse_copyright">
+                <source>Powered by Google custom search engine and TYPO3 extension pr_googlecse.</source>
+                <target>Powered by Google custom search engine und TYPO3 Erweiterung pr_googlecse.</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.pageof">
-                <source>of</source>
-                <target>von</target>
+            <trans-unit id="tx_prgooglecse_error">
+                <source>The search is currently not available. Sorry for that!</source>
+                <target>Die Suche ist aktuell leider nicht verfügbar. Das tut uns leid!</target>
             </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.openResult">
-                <source>Open</source>
-                <target>Öffnen</target>
-            </trans-unit>
-            <trans-unit id="tx_prgooglecse_domain_model_search.openResultInNewTab">
-                <source>Open new tab</source>
-                <target>Öffne neuen Tab</target>
+            <trans-unit id="tx_prgooglecse_error-admin">
+                <source>Visible for admins only: Take a look into the sysLog to get the exception content!</source>
+                <target>Nur für admins sichtbar: Schaue in den sysLog um den Inhalt der Exception zu sehen!</target>
             </trans-unit>
         </body>
     </file>

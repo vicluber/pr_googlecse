@@ -1,28 +1,57 @@
-plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
-	.tx_prgooglesearch-panel {
+plugin.tx_prgooglecse {
+    view {
+        templateRootPaths {
+            10 = EXT:pr_googlecse/Resources/Private/Templates
+            20 = {$plugin.tx_prgooglecse.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            10 = EXT:pr_googlecse/Resources/Private/Partials
+            20 = {$plugin.tx_prgooglecse.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            10 = EXT:pr_googlecse/Resources/Private/Layouts
+            20 = {$plugin.tx_prgooglecse.view.layoutRootPath}
+        }
+    }
+
+    _CSS_DEFAULT_STYLE (
+     	.tx_prgooglecse-panel {
 			margin: 10px 0;
 			background-color: #fff;
 			border: 1px solid #333;
 			border-radius: 4px;
-			}
+        }
 
-		.tx_prgooglesearch-panel-head {
+        .tx_prgooglecse-panel:hover .tx_prgooglecse-panel-head {
+            background-position: 0 -100%;
+            color: #333;
+        }
+
+		.tx_prgooglecse-panel-head {
 			padding: 10px 15px;
 			font-size: 105%;
-			color: #333;
-			background-color: #eee;
-			border-bottom: 1px solid #333;
+			color: #eee;
+            background-color: #132A2C;
+            background: linear-gradient(to bottom,#132A2C 50%,#A9D800 50%);
+            background-size: 100% 200%;
+			border-bottom: 1px solid #132A2C;
 			border-top-left-radius: 3px;
 			border-top-right-radius: 3px;
+            -webkit-transition: all 200ms ease-in-out; /* Firefox */
+            -moz-transition: all 200ms ease-in-out; /* WebKit */
+            -o-transition: all 200ms ease-in-out; /* Opera */
+            transition: all 200ms ease-in-out; /* Standard */
 		}
 
-		.tx_prgooglesearch-panel-body {
+		.tx_prgooglecse-panel-body {
 			font-size: 100%;
 			color: #333;
 			padding: 15px;
 		}
 
-		.tx_prgooglesearch-panel-foot {
+		.tx_prgooglecse-panel-foot {
 			background-color: #e3e3e3;
 			padding: 0 15px;
 			border-top: 1px solid #ccc;
@@ -30,21 +59,21 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 			border-bottom-right-radius: 5px;
 		}
 
-		.tx_prgooglesearch-panel a,
-		.tx_prgooglesearch-panel a:visited,
-		.tx_prgooglesearch-panel a:active {
+		.tx_prgooglecse-panel a,
+		.tx_prgooglecse-panel a:visited,
+		.tx_prgooglecse-panel a:active {
 			color: #484747;
 			font-weight: bold;
 			text-decoration: none;
 		}
 
-		.tx_prgooglesearch-panel a:hover,
-		.tx_prgooglesearch-panel a:focus {
+		.tx_prgooglecse-panel a:hover,
+		.tx_prgooglecse-panel a:focus {
 			color: #696868;
 			text-decoration: none;
 		}
 
-		.tx_prgooglesearch-panel a.button {
+		.tx_prgooglecse-panel a.button {
 			-webkit-appearance: none;
     		-moz-appearance: none;
     		appearance: none;
@@ -60,57 +89,67 @@ plugin.tx_prgooglecse._CSS_DEFAULT_STYLE (
 			display: inline-block;
         }
 
-   		.tx_prgooglesearch-panel a.button:hover,
-   		.tx_prgooglesearch-panel a.button:focus {
+   		.tx_prgooglecse-panel a.button:hover,
+   		.tx_prgooglecse-panel a.button:focus {
 			border: 1px solid #333333;
     		background: rgb(19, 40, 42);
 		}
 
-		.tx_prgooglesearch-pagination {
+		.tx_prgooglecse-pagination {
 			display: inline-table;
 			padding: 0;
 			margin: 10px 0;
 		}
 
-		.tx_prgooglesearch-pagination li {
+		.tx_prgooglecse-pagination li {
 			display: inline-block;
 		}
 
-		.tx_prgooglesearch-pagination li a {
+		.tx_prgooglecse-pagination li a {
 			padding: 6px 12px;
 			border:1px solid #333;
-			border-right-width: 0;
 		}
 
-		.tx_prgooglesearch-pagination li a:hover,
-		.tx_prgooglesearch-pagination li a:focus {
+		.tx_prgooglecse-pagination li a:hover,
+		.tx_prgooglecse-pagination li a:focus {
 			background: rgb(19, 40, 42);
 			color: #fff;
 		}
 
-		.tx_prgooglesearch-pagination li .active {
+		.tx_prgooglecse-pagination li .active {
 			background: #828282;
 			color: #fff;
 		}
 
-		.tx_prgooglesearch-pagination li:first-of-type a {
+		.tx_prgooglecse-pagination li:first-of-type a {
 			border-top-left-radius: 5px;
 			border-bottom-left-radius: 5px;
 		}
 
-		.tx_prgooglesearch-pagination li:last-of-type a {
+		.tx_prgooglecse-pagination li:last-of-type a {
 			border-top-right-radius: 5px;
 			border-bottom-right-radius: 5px;
 			border-right-width: 1px;
 		}
 
 		/* transitions */
-		.tx_prgooglesearch-panel a.button,
-		.tx_prgooglesearch-pagination li a {
+		.tx_prgooglecse-panel a.button,
+		.tx_prgooglecse-pagination li a {
 			-webkit-transition: all 200ms ease-in-out; /* Firefox */
     		-moz-transition: all 200ms ease-in-out; /* WebKit */
 			-o-transition: all 200ms ease-in-out; /* Opera */
     		transition: all 200ms ease-in-out; /* Standard */
 		}
 
-)
+        .tx_prgooglecse-copyright {
+            font-size: 80%;
+            opacity: 0.8;
+        }
+    )
+}
+
+# Register USER_INT
+tt_content.list.20.pr_googlecse = USER_INT
+tt_content.list.20.pr_googlecse {
+    userFunc = CryntonCom\PrGooglecse\SearchPlugin->render
+}

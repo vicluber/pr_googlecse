@@ -1,7 +1,7 @@
 {
     "name": "crynton/pr-googlecse",
     "type": "typo3-cms-extension",
-    "description": "Google Custom Search Engine for the TYPO3 Frontend",
+    "description": "Frontend search plugin that uses the Google CSE api.",
     "license": "GPL-2.0-or-later",
     "keywords": ["typo3", "TYPO3 CMS", "google", "custom search engine"],
     "homepage": "https://crynton.com",
@@ -18,11 +18,11 @@
       "source": "https://git.crynton.com/typo3-extensions/pr_googlecse"
     },
     "require": {
-      "typo3/cms-core": ">=7.6.0,<9.0."
+      "typo3/cms-core": ">=8.7.0,<9.4"
     },
     "autoload": {
         "psr-4": {
-            "Kronovanet\\PrGooglecse\\": "Classes"
+            "CryntonCom\\PrGooglecse\\": "Classes"
         }
     }
 }

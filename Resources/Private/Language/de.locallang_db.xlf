@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-01-19T14:50:37Z" product-name="pr_googlecse">
+        <header/>
+        <body>
+            <trans-unit id="plugin.title">
+                <source>Google custom search engine</source>
+                <target>Google custom search engine</target>
+            </trans-unit>
+            <trans-unit id="plugin.description">
+                <source>This plugin adds a search powered by Google CSE to your website.</source>
+                <target>Dieses Plugin beinhaltet eine Suche, welche die Google API verwendet.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
