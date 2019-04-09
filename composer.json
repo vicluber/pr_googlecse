@@ -4,21 +4,21 @@
     "description": "Frontend search plugin that uses the Google CSE api.",
     "license": "GPL-2.0-or-later",
     "keywords": ["typo3", "TYPO3 CMS", "google", "custom search engine"],
-    "homepage": "https://crynton.com",
+    "homepage": "https://kronova.net",
     "authors": [
       {
         "name": "Pascal Rinker",
-        "email": "info@crynton.com",
+        "email": "info@kronova.net",
         "role": "Developer"
       }
     ],
     "support": {
-      "email": "info@crynton.com",
-      "issues": "https://crynton.com/contact.html",
-      "source": "https://git.crynton.com/typo3-extensions/pr_googlecse"
+      "email": "info@kronova.net",
+      "issues": "https://kronova.net/contact.html",
+      "source": "https://git.kronova.net/typo3-extensions/pr_googlecse"
     },
     "require": {
-      "typo3/cms-core": ">=8.7.0,<=9.5"
+      "typo3/cms-core": "^8.7 || ^9.5"
     },
     "autoload": {
         "psr-4": {
