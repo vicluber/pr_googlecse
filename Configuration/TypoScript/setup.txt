@@ -17,134 +17,66 @@ plugin.tx_prgooglecse {
     }
 
     _CSS_DEFAULT_STYLE (
-     	.tx_prgooglecse-panel {
-			margin: 10px 0;
-			background-color: #fff;
-			border: 1px solid #333;
-			border-radius: 4px;
-        }
+    .search-results {
+      max-width: 750px;
+    }
 
-        .tx_prgooglecse-panel:hover .tx_prgooglecse-panel-head {
-            background-position: 0 -100%;
-            color: #333;
-        }
+    .search-result {
+      margin-bottom: 2em;
+    }
 
-		.tx_prgooglecse-panel-head {
-			padding: 10px 15px;
-			font-size: 105%;
-			color: #eee;
-            background-color: #132A2C;
-            background: linear-gradient(to bottom,#132A2C 50%,#A9D800 50%);
-            background-size: 100% 200%;
-			border-bottom: 1px solid #132A2C;
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
-            -webkit-transition: all 200ms ease-in-out; /* Firefox */
-            -moz-transition: all 200ms ease-in-out; /* WebKit */
-            -o-transition: all 200ms ease-in-out; /* Opera */
-            transition: all 200ms ease-in-out; /* Standard */
-		}
+    .search-result h3 {
+      margin-bottom: .3em;
+    }
 
-		.tx_prgooglecse-panel-body {
-			font-size: 100%;
-			color: #333;
-			padding: 15px;
-		}
+    .tx_prgooglecse-pagination {
+      display: inline-table;
+      padding: 0;
+      margin: 10px 0;
+    }
 
-		.tx_prgooglecse-panel-foot {
-			background-color: #e3e3e3;
-			padding: 0 15px;
-			border-top: 1px solid #ccc;
-			border-bottom-left-radius: 5px;
-			border-bottom-right-radius: 5px;
-		}
+    .tx_prgooglecse-pagination li {
+      display: inline-block;
+    }
 
-		.tx_prgooglecse-panel a,
-		.tx_prgooglecse-panel a:visited,
-		.tx_prgooglecse-panel a:active {
-			color: #484747;
-			font-weight: bold;
-			text-decoration: none;
-		}
+    .tx_prgooglecse-pagination li a {
+      padding: 6px 12px;
+      border:1px solid #333;
+    }
 
-		.tx_prgooglecse-panel a:hover,
-		.tx_prgooglecse-panel a:focus {
-			color: #696868;
-			text-decoration: none;
-		}
+    .tx_prgooglecse-pagination li a:hover,
+    .tx_prgooglecse-pagination li a:focus {
+      background: rgb(19, 40, 42);
+      color: #fff;
+    }
 
-		.tx_prgooglecse-panel a.button {
-			-webkit-appearance: none;
-    		-moz-appearance: none;
-    		appearance: none;
-			border: 1px solid rgb(90, 91, 91);
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px;
-			margin: .4em 0;
-			padding: 3px 8px;
-			font-size: 80%;
-			background: #828282;
-			color: #eee;
-			display: inline-block;
-        }
+    .tx_prgooglecse-pagination li .active {
+      background: #828282;
+      color: #fff;
+    }
 
-   		.tx_prgooglecse-panel a.button:hover,
-   		.tx_prgooglecse-panel a.button:focus {
-			border: 1px solid #333333;
-    		background: rgb(19, 40, 42);
-		}
+    .tx_prgooglecse-pagination li:first-of-type a {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
 
-		.tx_prgooglecse-pagination {
-			display: inline-table;
-			padding: 0;
-			margin: 10px 0;
-		}
+    .tx_prgooglecse-pagination li:last-of-type a {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-right-width: 1px;
+    }
+    .tx_prgooglecse-copyright {
+        font-size: 80%;
+        opacity: 0.8;
+    }
 
-		.tx_prgooglecse-pagination li {
-			display: inline-block;
-		}
-
-		.tx_prgooglecse-pagination li a {
-			padding: 6px 12px;
-			border:1px solid #333;
-		}
-
-		.tx_prgooglecse-pagination li a:hover,
-		.tx_prgooglecse-pagination li a:focus {
-			background: rgb(19, 40, 42);
-			color: #fff;
-		}
-
-		.tx_prgooglecse-pagination li .active {
-			background: #828282;
-			color: #fff;
-		}
-
-		.tx_prgooglecse-pagination li:first-of-type a {
-			border-top-left-radius: 5px;
-			border-bottom-left-radius: 5px;
-		}
-
-		.tx_prgooglecse-pagination li:last-of-type a {
-			border-top-right-radius: 5px;
-			border-bottom-right-radius: 5px;
-			border-right-width: 1px;
-		}
-
-		/* transitions */
-		.tx_prgooglecse-panel a.button,
-		.tx_prgooglecse-pagination li a {
-			-webkit-transition: all 200ms ease-in-out; /* Firefox */
-    		-moz-transition: all 200ms ease-in-out; /* WebKit */
-			-o-transition: all 200ms ease-in-out; /* Opera */
-    		transition: all 200ms ease-in-out; /* Standard */
-		}
-
-        .tx_prgooglecse-copyright {
-            font-size: 80%;
-            opacity: 0.8;
-        }
+    /* transitions */
+    .tx_prgooglecse-pagination li a {
+      -webkit-transition: all 200ms ease-in-out; /* Firefox */
+      -moz-transition: all 200ms ease-in-out; /* WebKit */
+      -o-transition: all 200ms ease-in-out; /* Opera */
+      transition: all 200ms ease-in-out; /* Standard */
+    }
     )
 }
 

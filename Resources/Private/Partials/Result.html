@@ -1,11 +1,6 @@
-<a href="{item.link}">
-    <div class="tx_prgooglecse-panel">
-        <div class="tx_prgooglecse-panel-head">
-            <f:format.html>{item.htmlTitle}</f:format.html>
-
-        </div>
-        <div class="tx_prgooglecse-panel-body">
-            <f:format.html>{item.htmlSnippet}</f:format.html>
-        </div>
-    </div>
-</a>
+<div class="search-result">
+	<a href="{item.link}"><h3><f:format.html>{item.htmlTitle}</f:format.html></h3></a>
+	<div class="search-result-body">
+		<f:format.html>{item.htmlSnippet}</f:format.html>
+	</div>
+</div>
