@@ -33,7 +33,7 @@ call_user_func(function () {
     // Cache for google result
     if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['pr_googlecse'])) {
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['pr_googlecse'] = [
-            'frontend' => \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class,
+            'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
             'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
             'options' => [],
             'groups' => []

@@ -1,5 +1,5 @@
 {
-    "name": "crynton/pr-googlecse",
+    "name": "kronova/pr-googlecse",
     "type": "typo3-cms-extension",
     "description": "Frontend search plugin that uses the Google CSE api.",
     "license": "GPL-2.0-or-later",
@@ -18,11 +18,11 @@
       "source": "https://git.kronova.net/typo3-extensions/pr_googlecse"
     },
     "require": {
-      "typo3/cms-core": "^8.7 || ^9.5"
+      "typo3/cms-core": "^9.5 || ^10.0"
     },
     "autoload": {
         "psr-4": {
-            "CryntonCom\\PrGooglecse\\": "Classes"
+            "KronovaNet\\PrGooglecse\\": "Classes"
         }
     }
 }

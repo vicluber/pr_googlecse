@@ -1,5 +1,5 @@
 <?php
-namespace CryntonCom\PrGooglecse;
+namespace KronovaNet\PrGooglecse;
 
 /*
  * This file is part of the pr_googlecse project.
@@ -14,11 +14,12 @@ namespace CryntonCom\PrGooglecse;
  * The TYPO3 project - inspiring people to share!
  */
 
-use CryntonCom\PrGooglecse\Configuration\ExtConf;
-use CryntonCom\PrGooglecse\Service\GoogleCseService;
+use KronovaNet\PrGooglecse\Configuration\ExtConf;
+use KronovaNet\PrGooglecse\Service\GoogleCseService;
 use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Cache\Frontend\StringFrontend;
-use TYPO3\CMS\Core\Page\PageRenderer;
+use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -45,7 +46,7 @@ class SearchPlugin
     protected $extConf;
 
     /**
-     * @var StringFrontend
+     * @var VariableFrontend
      */
     protected $cache;
 
@@ -55,6 +56,11 @@ class SearchPlugin
     protected $standaloneView;
 
     /**
+     * @var Logger
+     */
+    protected $logger;
+
+    /**
      * SearchPlugin constructor.
      */
     public function __construct()
@@ -62,6 +68,7 @@ class SearchPlugin
         $this->googleCseService = GeneralUtility::makeInstance(GoogleCseService::class);
         $this->extConf = GeneralUtility::makeInstance(ExtConf::class);
         $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('pr_googlecse');
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
     /**
@@ -94,11 +101,7 @@ class SearchPlugin
                     // show template that search is currently not available
                     $this->extConf->setEnableCache(false);
                     $this->standaloneView->setTemplate('Error');
-                    GeneralUtility::sysLog(
-                        'Error while running pr_googlecse: ' . json_encode($exception),
-                        'pr_googlecse',
-                        GeneralUtility::SYSLOG_SEVERITY_ERROR
-                    );
+                    $this->logger->error('Exception during search!', ['exception' => $exception]);
                 }
             } else {
                 // otherwise render the form template
@@ -113,7 +116,6 @@ class SearchPlugin
     }
 
     /**
-     * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidExtensionNameException
      */
     protected function initializeStandaloneView()

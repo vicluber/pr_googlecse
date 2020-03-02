@@ -151,5 +151,5 @@ plugin.tx_prgooglecse {
 # Register USER_INT
 tt_content.list.20.pr_googlecse = USER_INT
 tt_content.list.20.pr_googlecse {
-    userFunc = CryntonCom\PrGooglecse\SearchPlugin->render
+    userFunc = KronovaNet\PrGooglecse\SearchPlugin->render
 }

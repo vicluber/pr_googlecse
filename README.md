@@ -15,7 +15,7 @@ This is a TYPO3 Extension for using Google Custom Search Engine in combination w
 
 Login via SSH, go to your TYPO3 root and run the following command:
 
-`composer require crynton/pr-googlecse`
+`composer require kronova/pr-googlecse`
 
 ## Configure the extension ##
 
@@ -63,4 +63,4 @@ You can override the following field: `plugin.tx_prgooglecse._CSS_DEFAULT_STYLE`
 ## Support ##
 
 You can either open an issue ticket if you wan´t to discuss about a feature request, problem or
-you can use the contact form on my website https://crynton.com/contact.html for other stuff.
+you can use the contact form on my website https://kronova.net/contact.html for other stuff.

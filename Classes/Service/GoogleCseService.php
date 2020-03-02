@@ -1,5 +1,5 @@
 <?php
-namespace CryntonCom\PrGooglecse\Service;
+namespace KronovaNet\PrGooglecse\Service;
 
 /*
  * This file is part of the pr_googlecse project.
@@ -14,7 +14,7 @@ namespace CryntonCom\PrGooglecse\Service;
  * The TYPO3 project - inspiring people to share!
  */
 
-use CryntonCom\PrGooglecse\Configuration\ExtConf;
+use KronovaNet\PrGooglecse\Configuration\ExtConf;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

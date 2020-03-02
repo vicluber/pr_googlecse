@@ -1,5 +1,5 @@
 <?php
-namespace CryntonCom\PrGooglecse\Configuration;
+namespace KronovaNet\PrGooglecse\Configuration;
 
 /*
  * This file is part of the pr_googlecse project.
@@ -14,8 +14,10 @@ namespace CryntonCom\PrGooglecse\Configuration;
  * The TYPO3 project - inspiring people to share!
  */
 
-use CryntonCom\PrGooglecse\Exception\IncompleteConfigurationException;
+use KronovaNet\PrGooglecse\Exception\IncompleteConfigurationException;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * GoogleMapsController
@@ -53,7 +55,7 @@ class ExtConf implements SingletonInterface
     public function __construct()
     {
         // get global configuration
-        $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['pr_googlecse']);
+        $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('pr_googlecse');
         $missingRequiredSettings = $this->requiredSettings;
         if (is_array($extConf) && count($extConf)) {
             // call setter method foreach configuration entry
@@ -70,7 +72,7 @@ class ExtConf implements SingletonInterface
         if (count($missingRequiredSettings)) {
             throw new IncompleteConfigurationException(
                 'The following required settings are missing in your extension configuration: '
-                . implode(', ', $missingRequiredSettings),
+                . implode(', ', array_keys($missingRequiredSettings)),
                 1527962959
             );
         }

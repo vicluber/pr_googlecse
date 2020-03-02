@@ -1,5 +1,5 @@
 <?php
-namespace CryntonCom\PrGooglecse\Exception;
+namespace KronovaNet\PrGooglecse\Exception;
 
 /*
  * This file is part of the pr_googlecse project.
