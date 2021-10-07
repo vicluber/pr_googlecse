@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace KronovaNet\PrGooglecse\Service;
 
 /*
@@ -26,7 +29,7 @@ class GoogleCseService
     /**
      * API URL
      */
-    const API_URL = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&start=%d';
+    private const API_URL = 'https://www.googleapis.com/customsearch/v1?q=%s&cx=%s&key=%s&start=%d';
 
     /**
      * @var ExtConf
@@ -36,21 +39,12 @@ class GoogleCseService
     /**
      * GoogleCseService constructor.
      */
-    public function __construct()
+    public function __construct(ExtConf $extConf)
     {
-        $this->extConf = GeneralUtility::makeInstance(ExtConf::class);
+        $this->extConf = $extConf;
     }
 
-    /**
-     * Get response from Google CSE Api
-     *
-     * @param string $query
-     * @param int $start
-     * @return object|null
-     *
-     * @throws \HttpResponseException
-     */
-    public function search(string $query, int $start)
+    public function search(string $query, int $start): array
     {
         $requestUrl = sprintf(
             self::API_URL,
@@ -62,7 +56,7 @@ class GoogleCseService
         $requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
         $response = $requestFactory->request($requestUrl);
         if ($response->getStatusCode() === 200) {
-            return json_decode($response->getBody()->getContents());
+            return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         } else {
             throw new \HttpResponseException(
                 'Your search could not be completed. HTTP response code: ' . $response->getStatusCode()

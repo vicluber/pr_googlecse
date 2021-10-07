@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace KronovaNet\PrGooglecse\Configuration;
 
 /*
@@ -62,6 +65,11 @@ class ExtConf implements SingletonInterface
             foreach ($extConf as $key => $value) {
                 $methodName = 'set' . ucfirst($key);
                 if (method_exists($this, $methodName)) {
+                    $reflectionMethod = new \ReflectionMethod($this, $methodName);
+                    $type = $reflectionMethod->getParameters()[0]->getType();
+                    if ($type) {
+                        settype($value, $type->getName());
+                    }
                     $this->$methodName($value);
                 }
                 if (array_key_exists($key, $missingRequiredSettings)) {
@@ -78,76 +86,42 @@ class ExtConf implements SingletonInterface
         }
     }
 
-    /**
-     * Returns the googleApiKey
-     *
-     * @return string
-     */
     public function getGoogleApiKey(): string
     {
         return $this->googleApiKey;
     }
 
-    /**
-     * Sets the googleApiKey
-     *
-     * @param string $googleApiKey
-     * @return void
-     */
-    public function setGoogleApiKey(string $googleApiKey)
+    public function setGoogleApiKey(string $googleApiKey): void
     {
         $this->googleApiKey = trim((string)$googleApiKey);
     }
 
-    /**
-     * Returns the googleCseKey
-     *
-     * @return string
-     */
     public function getGoogleCseKey(): string
     {
         return $this->googleCseKey;
     }
 
-    /**
-     * Sets the googleCseKey
-     *
-     * @param string $googleCseKey
-     * @return void
-     */
-    public function setGoogleCseKey(string $googleCseKey)
+    public function setGoogleCseKey(string $googleCseKey): void
     {
         $this->googleCseKey = $googleCseKey;
     }
 
-    /**
-     * @return bool
-     */
     public function isEnableCache(): bool
     {
         return $this->enableCache;
     }
 
-    /**
-     * @param int|bool $enableCache
-     */
-    public function setEnableCache($enableCache)
+    public function setEnableCache(bool $enableCache): void
     {
         $this->enableCache = (bool)$enableCache;
     }
 
-    /**
-     * @return int
-     */
     public function getCacheLifetime(): int
     {
         return $this->cacheLifetime;
     }
 
-    /**
-     * @param int $cacheLifetime
-     */
-    public function setCacheLifetime(int $cacheLifetime)
+    public function setCacheLifetime(int $cacheLifetime): void
     {
         $this->cacheLifetime = $cacheLifetime;
     }

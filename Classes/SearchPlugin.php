@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace KronovaNet\PrGooglecse;
 
 /*
@@ -16,10 +19,9 @@ namespace KronovaNet\PrGooglecse;
 
 use KronovaNet\PrGooglecse\Configuration\ExtConf;
 use KronovaNet\PrGooglecse\Service\GoogleCseService;
-use TYPO3\CMS\Core\Cache\CacheManager;
-use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use Psr\Log\LoggerInterface;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Log\Logger;
-use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -46,7 +48,7 @@ class SearchPlugin
     protected $extConf;
 
     /**
-     * @var VariableFrontend
+     * @var FrontendInterface
      */
     protected $cache;
 
@@ -60,22 +62,19 @@ class SearchPlugin
      */
     protected $logger;
 
-    /**
-     * SearchPlugin constructor.
-     */
-    public function __construct()
+    public function __construct(
+        GoogleCseService $googleCseService,
+        ExtConf $extConf,
+        FrontendInterface $cache,
+        LoggerInterface $logger
+    )
     {
-        $this->googleCseService = GeneralUtility::makeInstance(GoogleCseService::class);
-        $this->extConf = GeneralUtility::makeInstance(ExtConf::class);
-        $this->cache = GeneralUtility::makeInstance(CacheManager::class)->getCache('pr_googlecse');
-        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+        $this->googleCseService = $googleCseService;
+        $this->extConf = $extConf;
+        $this->cache = $cache;
+        $this->logger = $logger;
     }
 
-    /**
-     * Render search plugin
-     *
-     * @return string
-     */
     public function render(): string
     {
         $query = trim(GeneralUtility::_GP('prGoogleCseQuery'));
@@ -115,10 +114,7 @@ class SearchPlugin
         return $content;
     }
 
-    /**
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\InvalidExtensionNameException
-     */
-    protected function initializeStandaloneView()
+    protected function initializeStandaloneView(): void
     {
         $this->standaloneView = GeneralUtility::makeInstance(StandaloneView::class, $this->cObj);
         $this->standaloneView->getTemplatePaths()->fillDefaultsByPackageName('pr_googlecse');
@@ -126,10 +122,7 @@ class SearchPlugin
         $this->standaloneView->getRequest()->setControllerExtensionName('pr_googlecse');
     }
 
-    /**
-     * @return TypoScriptFrontendController
-     */
-    protected function getTypoScriptFrontendController()
+    protected function getTypoScriptFrontendController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
     }
