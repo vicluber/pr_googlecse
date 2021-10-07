@@ -1,0 +1,22 @@
+# PHPStorm
+.idea
+
+# OSX
+.DS_Store
+
+# Composer
+vendor/
+bin/
+logs/
+composer.lock
+
+# Build stuff
+.build/
+.ddev/commands/
+Build/.phpunit.result.cache
+config/
+var/
+
+# Cache
+.php-cs-fixer.cache
+.phplint.cache

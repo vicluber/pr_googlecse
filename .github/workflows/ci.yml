@@ -1,0 +1,47 @@
+# Adapted from https://github.com/TYPO3GmbH/blog/blob/master/.github/workflows/ci.yml
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        typo3: [^10.4, ^11.5]
+        php: ['7.4', '8.0']
+        package: [typo3/cms-core]
+        os: [ubuntu-latest]
+        exclude:
+          - typo3: ^10.4
+            php: '8.0'
+        include:
+          - typo3: ^10.4
+            php: '7.2'
+          - typo3: ^10.4
+            php: '7.3'
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up PHP Version ${{ matrix.php }}
+        run: |
+          sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
+          php -v
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies with ${{ matrix.package }}:${{ matrix.typo3 }}
+        run: |
+          composer require ${{ matrix.package }}:${{ matrix.typo3 }} --no-progress
+          git checkout composer.json
+
+      - name: php-cs-fixer
+        run: composer ci:php:fixer
+
+      - name: Lint PHP
+        run: composer ci:php:lint
+
