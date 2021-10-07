@@ -74,7 +74,9 @@ class SearchPlugin
         $start = (int)GeneralUtility::_GP('prGoogleCseStartIndex') ?: 1;
         $pageUid = (int)$this->getTypoScriptFrontendController()->id;
         $pageType = (int)GeneralUtility::_GP('type');
-        $cacheIdentifier = md5($query . $start);
+        $cacheIdentifier = md5(
+            $query . $start . $this->getTypoScriptFrontendController()->getLanguage()->getLocale()
+        );
         // get cached result / search form if cache is enabled and cache entry is exists
         if ($this->extConf->isEnableCache() && $this->cache->has($cacheIdentifier)) {
             $content = $this->cache->get($cacheIdentifier);
