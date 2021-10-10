@@ -13,7 +13,6 @@ namespace KronovaNet\PrGooglecse;
 
 use KronovaNet\PrGooglecse\Configuration\ExtConf;
 use KronovaNet\PrGooglecse\Service\GoogleCseService;
-use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -59,13 +58,12 @@ class SearchPlugin
     public function __construct(
         GoogleCseService $googleCseService,
         ExtConf $extConf,
-        FrontendInterface $cache,
-        LoggerInterface $logger
+        FrontendInterface $cache
     ) {
         $this->googleCseService = $googleCseService;
         $this->extConf = $extConf;
         $this->cache = $cache;
-        $this->logger = $logger;
+        $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
     }
 
     public function render(string $_, array $conf): string
