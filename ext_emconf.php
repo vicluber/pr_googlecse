@@ -1,9 +1,9 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Google custom search engine',
-    'description' => 'Frontend search plugin that uses the Google CSE api.',
+    'description' => 'Integration of the Google custom search engine using Fluid templates for a customized look and feel.',
     'category' => 'plugin',
-    'state' => 'beta',
+    'state' => 'stable',
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
