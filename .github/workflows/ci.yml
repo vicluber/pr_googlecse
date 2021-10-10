@@ -11,7 +11,6 @@ jobs:
       matrix:
         typo3: [^10.4, ^11.5]
         php: ['7.4', '8.0']
-        package: [typo3/cms-core]
         exclude:
           - typo3: ^10.4
             php: '8.0'
@@ -33,9 +32,9 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Install dependencies with ${{ matrix.package }}:${{ matrix.typo3 }}
+      - name: Install dependencies with typo3/cms-core:${{ matrix.typo3 }}
         run: |
-          composer require ${{ matrix.package }}:${{ matrix.typo3 }} --no-progress
+          composer require typo3/cms-core:${{ matrix.typo3 }} --no-progress
           git checkout composer.json
 
       - name: php-cs-fixer
