@@ -1,6 +1,6 @@
 plugin.tx_prgooglecse {
     view {
-        templateRootPaths {
+      templateRootPaths {
             10 = EXT:pr_googlecse/Resources/Private/Templates
             20 = {$plugin.tx_prgooglecse.view.templateRootPath}
         }
@@ -84,4 +84,6 @@ plugin.tx_prgooglecse {
 tt_content.list.20.pr_googlecse = USER_INT
 tt_content.list.20.pr_googlecse {
     userFunc = KronovaNet\PrGooglecse\SearchPlugin->render
+    showPagesInPagination = {$tt_content.list.20.pr_googlecse.showPagesInPagination}
+    resultsPerPage = {$tt_content.list.20.pr_googlecse.resultsPerPage}
 }

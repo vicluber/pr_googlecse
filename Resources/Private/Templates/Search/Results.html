@@ -1,6 +1,11 @@
-<h2><f:translate key="tx_prgooglecse_search"/> {prGoogleCseQuery}</h2>
+<h2>
+	<f:translate key="tx_prgooglecse_search"/>
+	{prGoogleCseQuery}
+</h2>
 <f:render partial="Form" arguments="{prGoogleCseQuery: prGoogleCseQuery, pageUid: pageUid, pageType: pageType}"/>
-<p><f:translate key="tx_prgooglecse_search.totalResults" arguments="{0: response.searchInformation.totalResults}"/></p>
+<p>
+	<f:translate key="tx_prgooglecse_search.totalResults" arguments="{0: response.searchInformation.totalResults}"/>
+</p>
 <f:if condition="{response.items}">
 	<f:then>
 		<div class="search-results">
@@ -8,7 +13,8 @@
 				<f:render partial="Result" arguments="{item: item}"/>
 			</f:for>
 		</div>
-		<f:render partial="Pagination" arguments="{queries: response.queries, prGoogleCseQuery: prGoogleCseQuery}"/>
+		<f:render partial="Pagination"
+							arguments="{queries: response.queries, prGoogleCseQuery: prGoogleCseQuery, resultsPerPage: resultsPerPage, showPagesInPagination: showPagesInPagination}"/>
 	</f:then>
 	<f:else>
 		<f:translate key="tx_prgooglecse_search.noresults"/>

@@ -68,12 +68,13 @@ class SearchPlugin
         $this->logger = $logger;
     }
 
-    public function render(): string
+    public function render(string $_, array $conf): string
     {
-        $query = trim(GeneralUtility::_GP('prGoogleCseQuery'));
+        $query = trim(GeneralUtility::_GP('prGoogleCseQuery') ?? '');
         $start = (int)GeneralUtility::_GP('prGoogleCseStartIndex') ?: 1;
         $pageUid = (int)$this->getTypoScriptFrontendController()->id;
         $pageType = (int)GeneralUtility::_GP('type');
+        $resultsPerPage = (int)$conf['resultsPerPage'];
         $cacheIdentifier = md5(
             $query . $start . $this->getTypoScriptFrontendController()->getLanguage()->getLocale()
         );
@@ -87,9 +88,11 @@ class SearchPlugin
             if ($query) {
                 try {
                     // only send request if query is not empty
-                    $response = $this->googleCseService->search($query, $start);
+                    $response = $this->googleCseService->search($query, $start, $resultsPerPage);
                     $this->standaloneView->assign('response', $response);
                     $this->standaloneView->assign('prGoogleCseQuery', $query);
+                    $this->standaloneView->assign('resultsPerPage', $resultsPerPage);
+                    $this->standaloneView->assign('showPagesInPagination', (bool)$conf['showPagesInPagination']);
                     $this->standaloneView->setTemplate('Results');
                 } catch (\Exception $exception) {
                     // show template that search is currently not available

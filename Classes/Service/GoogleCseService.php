@@ -38,7 +38,7 @@ class GoogleCseService
         $this->extConf = $extConf;
     }
 
-    public function search(string $query, int $start): array
+    public function search(string $query, int $start, int $resultsPerPage): array
     {
         $requestUrl = sprintf(
             self::API_URL,
